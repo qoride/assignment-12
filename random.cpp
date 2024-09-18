@@ -4,35 +4,39 @@
 using namespace std;
 
 int main(){
-    int input;
+    int input,min,max,guesses = 0;
+    string affirmations[] = {"\nKeep going!\n", "\nYou're getting there!\n", "\nNice guess!\n", "\nDon't give up now!\n"};
     char redo[1];
-    const int min = 1;
-    const int max = 10;
+
+    cout << "Enter the range for the random number (min max): ";
+    cin >> min >> max;
 
     int random = (rand()%(max-min+1))+min;
 
     while(input != random){
-        cout << "Guess a number between " << min << " and " << max << ": ";
+        guesses++;
+
+        cout << "\nGuess a number between " << min << " and " << max << ": ";
         cin >> input;
+
         if(input == random){
-            cout << "\n\nCongratulations!";
-            while((redo[0] == 'Y'||redo[0] == 'N') == 0){
-                cout << "\nTry again? [Y/N] ";
-                cin >> redo[0];
-                switch(redo[0]){
-                case 'Y':
-                    int random = (rand()%(max-min+1))+min;
+            cout << "\nCongratulations! You got the nuber in " << guesses << " guesses!";
+        }else{
+            switch((rand()%4)+1){
+                case 1:
                     break;
 
-                case 'N':
-                    cout << "\n\nThanks for playing!";
+                case 2:
+                    if(input < random){
+                        cout << "\nPsst! Try guessing higher!\n";
+                    }else{
+                        cout << "\nMaybe try guessing a bit lower!\n";
+                    }
                     break;
 
                 default:
-                    cout << redo[0] << " is not a valid input.";
+                    cout << affirmations[(rand()%4)];
                     break;
-                }
-                cout << "\n\n";
             }
         }
     }
