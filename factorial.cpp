@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 int factorialRecursive(int n){
     if(n==1){return 1;}
     return n*factorialRecursive(n-1);
@@ -8,12 +10,10 @@ int factorialRecursive(int n){
 int factorialForLoop(int n){
     int factorial = 1;
     for(int i = n; i > 1; i--){
-        factorial *= n;
+        factorial *= i;
     }
     return factorial;
 }
-
-using namespace std;
 
 int main(){
     int input;
